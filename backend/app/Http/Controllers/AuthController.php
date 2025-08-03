@@ -9,7 +9,24 @@ use App\Models\User;
 class AuthController extends Controller
 {
     //
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+        $user = User::where('email', $request->email)->first();
+        if (! $user || ! Hash::check($request->password, $user->password)) {
+            return response()->json(['message' => 'Credenciales incorrectas.'], 401);
+        }
+        $token = $user->createToken('api_token')->plainTextToken;
 
+        return response()->json([
+            'message' => 'Login exitoso.',
+            'token' => $token,
+            'user' => $user
+        ]);
+    }
     public function register(Request $request)
     {
         $request->validate([
@@ -25,7 +42,7 @@ class AuthController extends Controller
         $token = $user->createToken('api_token')->plainTextToken;
 
         return response()->json([
-            'message' => 'Usuario registrado correctamente',
+            'message' => 'Usuario registrado correctamente.',
             'token' => $token,
             'user' => $user
         ], 201);
