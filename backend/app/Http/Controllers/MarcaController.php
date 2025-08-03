@@ -66,8 +66,8 @@ class MarcaController extends Controller
         ]);
         $marca->update($request->all());
         return response()->json([
-            'mensaje'=>'Categoria actualizada exitosamente.',
-            'categoria'=>$marca
+            'mensaje'=>'Marca actualizada exitosamente.',
+            'marca'=>$marca
         ], 201);
     }
 
