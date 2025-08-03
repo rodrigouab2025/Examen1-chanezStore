@@ -48,6 +48,7 @@ class ProductoController extends Controller
                 'mensaje' => 'Producto no encontrado.'
             ], 404);
         }
+        return response()->json($producto,200);
     }
 
     /**
@@ -55,25 +56,27 @@ class ProductoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
         $producto = Producto::find($id);
-        if(!$producto){
+        if (!$producto) {
             return response()->json([
                 'mensaje' => 'Producto no encontrado.'
             ], 404);
         }
-        return response()->json($producto,200);
+
         $request->validate([
-            'nombre'=>'nullable',
-            'precio'=>'nullable',
-            'marca_id'=>'required|exists:marca,id',
+            'nombre' => 'nullable',
+            'precio' => 'nullable',
+            'marca_id' => 'required|exists:marca,id',
         ]);
+
         $producto->update($request->all());
+
         return response()->json([
-            'mensaje'=>'Producto actualizado exitosamente.',
-            'producto'=>$producto
-        ], 201);
+            'mensaje' => 'Producto actualizado exitosamente.',
+            'producto' => $producto
+        ], 200);
     }
+
 
     /**
      * Remove the specified resource from storage.
