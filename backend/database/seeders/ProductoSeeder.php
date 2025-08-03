@@ -16,14 +16,14 @@ class ProductoSeeder extends Seeder
         //
          DB::table('producto')->insert([
             'nombre' => 'ZAPATILLA HOMBRE ADIDAS GALAXY',
-            'precio' => 1149,00,
+            'precio' => 1149.00,
             'marca_id' => 1,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
          DB::table('producto')->insert([
             'nombre' => 'NIKE BLAZER MID "77',
-            'precio' => 433,65,
+            'precio' => 433.65,
             'marca_id' => 2,
             'created_at' => now(),
             'updated_at' => now(),

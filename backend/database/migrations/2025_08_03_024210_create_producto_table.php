@@ -17,7 +17,7 @@ return new class extends Migration
             $table->decimal('precio', 10, 2);
             $table->unsignedBigInteger('marca_id');
             $table->timestamps();
-            $table->foreign('marca_id')->references('id')->on('marcas')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('marca_id')->references('id')->on('marca')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
