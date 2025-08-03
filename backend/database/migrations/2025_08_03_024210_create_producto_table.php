@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('producto', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre',50);
+            $table->string('nombre',100);
             $table->decimal('precio', 10, 2);
             $table->unsignedBigInteger('marca_id');
             $table->timestamps();
